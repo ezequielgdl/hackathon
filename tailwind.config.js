@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'portal-green': '#39ff14',
+        'portal-green': '#32cd32',
         'space-blue': '#0077be',
         'alien-purple': '#9932cc',
         'neon-pink': '#ff6ec7',
