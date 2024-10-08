@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'portal-green': '#32cd32',
+        'portal-green': '#01AEC5',
         'space-blue': '#0077be',
         'alien-purple': '#9932cc',
         'neon-pink': '#ff6ec7',
@@ -19,6 +19,9 @@ module.exports = {
       },
       gradients: {
         'portal-swirl': 'linear-gradient(45deg, #39ff14, #0077be, #9932cc)',
+      },
+      fontFamily: {
+        rubik: ['Rubik', 'sans-serif'],
       },
     },
   },

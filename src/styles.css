@@ -6,5 +6,6 @@
 
 body {
     @apply bg-dark-matter text-white;
+    font-family: 'Rubik', sans-serif;
 }
 

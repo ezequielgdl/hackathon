@@ -6,42 +6,46 @@ import { CharacterCardComponent } from '../character-card/character-card.compone
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-characters',
   standalone: true,
-  imports: [CharacterCardComponent, ReactiveFormsModule, CommonModule],
+  imports: [CharacterCardComponent, ReactiveFormsModule, CommonModule, HeaderComponent],
   template: `
-    <div class="flex-column justify-center items-center">  
-      <h1 class="text-portal-green text-4xl font-bold mb-4">Characters</h1>
-      <input 
-        [formControl]="searchControl" 
-        placeholder="Search characters..." 
-        class="w-full p-3 mb-6 bg-dimension-gray text-futuristic-silver placeholder-futuristic-silver/50 border-2 border-portal-green rounded-lg focus:outline-none focus:ring-2 focus:ring-space-blue focus:border-transparent transition-all duration-300 shadow-lg hover:shadow-portal-green"
-      >
-      <div id="characters" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 border-2 border-portal-green rounded-lg p-4 m-4">   
+    <div class="container mx-auto px-4 py-8">
+      <app-header></app-header>
+      <h1 class="text-portal-green text-4xl font-bold mb-8 text-center">Characters</h1>
+      <div class="max-w-2xl mx-auto mb-8">
+        <input 
+          [formControl]="searchControl" 
+          placeholder="Search characters..." 
+          class="w-full p-4 bg-dimension-gray text-futuristic-silver placeholder-futuristic-silver/50 border-2 border-portal-green rounded-lg focus:outline-none focus:ring-2 focus:ring-space-blue focus:border-transparent transition-all duration-300 shadow-lg hover:shadow-portal-green"
+        >
+      </div>
+      <div id="characters" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">   
         @for (character of paginatedCharacters(); track character.id) {
           <app-character-card [character]="character"></app-character-card>
         }
         @if (paginatedCharacters().length < 1) {
-          <div class="text-portal-green text-xl font-bold mb-4">No characters found</div>
+          <div class="col-span-full text-portal-green text-xl font-bold text-center">No characters found</div>
         }
       </div>
-      <div class="flex justify-center mt-4">
+      <div class="flex justify-center items-center space-x-2">
         <button 
           (click)="previousPage()" 
           [disabled]="currentPage() === 1"
-          class="bg-portal-green text-dimension-gray px-4 py-2 rounded-l-lg disabled:opacity-50"
+          class="bg-portal-green text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
         >
           Previous
         </button>
-        <span class="bg-dimension-gray text-futuristic-silver px-4 py-2">
+        <span class="bg-dimension-gray text-futuristic-silver px-6 py-3 rounded-lg">
           {{ currentPage() }} / {{ totalPages() }}
         </span>
         <button 
           (click)="nextPage()" 
           [disabled]="currentPage() === totalPages()"
-          class="bg-portal-green text-dimension-gray px-4 py-2 rounded-r-lg disabled:opacity-50"
+          class="bg-portal-green text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
         >
           Next
         </button>
@@ -56,7 +60,7 @@ export class CharactersComponent implements OnInit {
   searchControl = new FormControl('');
   
   currentPage = signal(1);
-  itemsPerPage = 12; // Adjust this value as needed
+  itemsPerPage = 20;
 
   constructor(private charactersService: CharactersService) { }
 
@@ -76,7 +80,7 @@ export class CharactersComponent implements OnInit {
       distinctUntilChanged()
     ).subscribe(searchTerm => {
       this.filterCharacters(searchTerm || '');
-      this.currentPage.set(1); // Reset to first page on new search
+      this.currentPage.set(1);
     });
   }
 
