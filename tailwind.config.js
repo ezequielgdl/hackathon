@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'rick-blue': '#01AEC5',
+        'rick-blue': '#00D1ED',
         'space-blue': '#0077be',
         'dimension-gray': '#33335b',
         'futuristic-silver': '#c0c0c0',

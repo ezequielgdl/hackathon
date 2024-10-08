@@ -26,12 +26,12 @@ Asegúrate de tener instalado lo siguiente antes de comenzar:
 
 1. Clona el repositorio:
    ```
-   git clone [URL del repositorio]
+   git clone https://github.com/ezequielgdl/hackathon
    ```
 
 2. Navega al directorio del proyecto:
    ```
-   cd [nombre-del-proyecto]
+   cd hackathon
    ```
 
 3. Instala las dependencias:
@@ -50,6 +50,10 @@ Asegúrate de tener instalado lo siguiente antes de comenzar:
 
 3. Busca tu personaje favorito por nombre.
 
+## Uso
+Busca tu personaje favorito por nombre en la aplicación.
+
+![Captura de pantalla de la aplicación](/public/screenshot.png)
 
 ## Contacto
 
