@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         'rick-blue': '#01AEC5',
         'space-blue': '#0077be',
-        'dimension-gray': '#2A3A3A',
+        'dimension-gray': '#33335b',
         'futuristic-silver': '#c0c0c0',
       },
       backgroundColor: {
