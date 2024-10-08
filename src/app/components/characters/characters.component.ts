@@ -15,12 +15,12 @@ import { HeaderComponent } from '../header/header.component';
   template: `
     <div class="container mx-auto px-4 py-8">
       <app-header></app-header>
-      <h1 class="text-portal-green text-4xl font-bold mb-8 text-center">Characters</h1>
+      <h1 class="text-rick-blue text-4xl font-bold mb-8 text-center">Characters</h1>
       <div class="max-w-2xl mx-auto mb-8">
         <input 
           [formControl]="searchControl" 
           placeholder="Search characters..." 
-          class="w-full p-4 bg-dimension-gray text-futuristic-silver placeholder-futuristic-silver/50 border-2 border-portal-green rounded-lg focus:outline-none focus:ring-2 focus:ring-space-blue focus:border-transparent transition-all duration-300 shadow-lg hover:shadow-portal-green"
+          class="w-full p-4 bg-dimension-gray text-futuristic-silver placeholder-futuristic-silver/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-rick-blue focus:border-transparent transition-all duration-300 shadow-lg hover:shadow-portal-green"
         >
       </div>
       <div id="characters" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">   
@@ -28,14 +28,14 @@ import { HeaderComponent } from '../header/header.component';
           <app-character-card [character]="character"></app-character-card>
         }
         @if (paginatedCharacters().length < 1) {
-          <div class="col-span-full text-portal-green text-xl font-bold text-center">No characters found</div>
+          <div class="col-span-full text-rick-blue text-xl font-bold text-center">No characters found</div>
         }
       </div>
       <div class="flex justify-center items-center space-x-2">
         <button 
           (click)="previousPage()" 
           [disabled]="currentPage() === 1"
-          class="bg-portal-green text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
+          class="bg-rick-blue text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
         >
           Previous
         </button>
@@ -45,7 +45,7 @@ import { HeaderComponent } from '../header/header.component';
         <button 
           (click)="nextPage()" 
           [disabled]="currentPage() === totalPages()"
-          class="bg-portal-green text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
+          class="bg-rick-blue text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
         >
           Next
         </button>
