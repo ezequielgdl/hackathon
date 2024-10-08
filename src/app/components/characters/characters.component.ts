@@ -35,7 +35,7 @@ import { HeaderComponent } from '../header/header.component';
         <button 
           (click)="previousPage()" 
           [disabled]="currentPage() === 1"
-          class="bg-rick-blue text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
+          class="bg-space-blue text-white px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-rick-blue"
         >
           Previous
         </button>
@@ -45,7 +45,7 @@ import { HeaderComponent } from '../header/header.component';
         <button 
           (click)="nextPage()" 
           [disabled]="currentPage() === totalPages()"
-          class="bg-rick-blue text-dimension-gray px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-space-blue"
+          class="bg-space-blue text-white px-6 py-3 rounded-lg disabled:opacity-50 transition-all duration-300 hover:bg-rick-blue"
         >
           Next
         </button>

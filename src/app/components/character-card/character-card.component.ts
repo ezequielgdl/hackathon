@@ -8,7 +8,7 @@ import { Character } from '../../interfaces/characters';
   template: `
     <div class="bg-dimension-gray rounded-lg shadow-xl p-4 hover:shadow-rick-blue transition-shadow duration-300">
       <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full">
-        <img [src]="character?.image" [alt]="character?.name" class="w-full h-full object-cover">
+        <img [src]="character?.image" [alt]="character?.name" class="w-full h-full object-cover" loading="lazy">
       </div>
       <h2 class="text-rick-blue text-xl font-bold mb-2 text-center">{{ character?.name }}</h2>
       <p class="text-futuristic-silver mb-1 text-center">
