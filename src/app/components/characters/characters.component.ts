@@ -56,6 +56,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class CharactersComponent implements OnInit {
   characters = signal<Character[]>([]);
+  filteredCharacters = signal<Character[]>([]);
   searchControl = new FormControl('');
   
   currentPage = signal(1);
@@ -67,6 +68,7 @@ export class CharactersComponent implements OnInit {
     this.charactersService.fetchAllCharacters().subscribe({
       next: (data) => {
         this.characters.set(data);
+        this.filteredCharacters.set(data);
       },
       error: (error) => {
         console.error(error);
@@ -86,15 +88,15 @@ export class CharactersComponent implements OnInit {
     const filtered = this.characters().filter(character =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    this.characters.set(filtered);
+    this.filteredCharacters.set(filtered);
   }
 
-  totalPages = computed(() => Math.ceil(this.characters().length / this.itemsPerPage));
+  totalPages = computed(() => Math.ceil(this.filteredCharacters().length / this.itemsPerPage));
 
   paginatedCharacters = computed(() => {
     const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.characters().slice(startIndex, endIndex);
+    return this.filteredCharacters().slice(startIndex, endIndex);
   });
 
   nextPage() {

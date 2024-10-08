@@ -6,8 +6,24 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
   <div class="relative flex justify-center items-center overflow-hidden">
-    <img src="/rickandmortylogo.webp" alt="Rick and Morty" width="300" height="100" loading="eager" fetchpriority="high">
-    <img src="/rickflying.webp" alt="Flying Rick" class="absolute z-10 animate-fly-across" width="128" height="128" loading="lazy">
+    <img 
+      src="/rickandmortylogo.webp" 
+      alt="Rick and Morty" 
+      width="300" 
+      height="100" 
+      loading="eager" 
+      fetchpriority="high"
+      decoding="async"
+      class="h-auto w-auto"
+    >
+    <img 
+      src="/rickflying.webp" 
+      alt="Flying Rick" 
+      class="absolute z-10 animate-fly-across" 
+      width="128" 
+      height="128" 
+      loading="lazy"
+    >
   </div>
   `,
   styles: [`
