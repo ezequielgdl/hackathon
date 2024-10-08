@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CharactersService } from '../../services/characters.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { signal, computed } from '@angular/core';
+
+import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../interfaces/characters';
 import { CharacterCardComponent } from '../character-card/character-card.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -55,26 +56,38 @@ import { HeaderComponent } from '../header/header.component';
   styles: ``
 })
 export class CharactersComponent implements OnInit {
+  private readonly itemsPerPage = 20;
+
   characters = signal<Character[]>([]);
   filteredCharacters = signal<Character[]>([]);
   searchControl = new FormControl('');
-  
   currentPage = signal(1);
-  itemsPerPage = 20;
+  totalPages = computed(() => Math.ceil(this.filteredCharacters().length / this.itemsPerPage));
+
+  paginatedCharacters = computed(() => {
+    const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.filteredCharacters().slice(startIndex, endIndex);
+  });
 
   constructor(private charactersService: CharactersService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.fetchCharacters();
+    this.setupSearchListener();
+  }
+
+  private fetchCharacters(): void {
     this.charactersService.fetchAllCharacters().subscribe({
       next: (data) => {
         this.characters.set(data);
         this.filteredCharacters.set(data);
       },
-      error: (error) => {
-        console.error(error);
-      }
+      error: (error) => console.error('Error fetching characters:', error)
     });
+  }
 
+  private setupSearchListener(): void {
     this.searchControl.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged()
@@ -84,28 +97,20 @@ export class CharactersComponent implements OnInit {
     });
   }
 
-  filterCharacters(searchTerm: string) {
+  private filterCharacters(searchTerm: string): void {
     const filtered = this.characters().filter(character =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     this.filteredCharacters.set(filtered);
   }
 
-  totalPages = computed(() => Math.ceil(this.filteredCharacters().length / this.itemsPerPage));
-
-  paginatedCharacters = computed(() => {
-    const startIndex = (this.currentPage() - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.filteredCharacters().slice(startIndex, endIndex);
-  });
-
-  nextPage() {
+  nextPage(): void {
     if (this.currentPage() < this.totalPages()) {
       this.currentPage.update(page => page + 1);
     }
   }
 
-  previousPage() {
+  previousPage(): void {
     if (this.currentPage() > 1) {
       this.currentPage.update(page => page - 1);
     }
