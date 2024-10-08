@@ -54,6 +54,12 @@ Asegúrate de tener instalado lo siguiente antes de comenzar:
 ## Uso
 Busca tu personaje favorito por nombre en la aplicación.
 
+## Demo
+
+[Demo](https://hackathon-theta-wheat.vercel.app/)
+
+## Capturas de pantalla
+
 ![Captura de pantalla de la aplicación](/public/screenshot.png)
 
 ## Contacto
