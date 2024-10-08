@@ -1,27 +1,56 @@
-# Frontend
+# Rick and Morty Hackathon
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
+## Descripción
+Es una aplicación web que permite buscar y filtrar personajes de la serie Rick and Morty.
 
-## Development server
+## Pila Tecnológica
+Este proyecto utiliza las siguientes tecnologías:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Frontend:
+  - Angular 18.0.5
+  - TypeScript
+  - RxJS
+  - Tailwind CSS
 
-## Code scaffolding
+- API:
+  - Rick and Morty API (https://rickandmortyapi.com/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos Previos
+Asegúrate de tener instalado lo siguiente antes de comenzar:
 
-## Build
+- Node.js (versión 18.x o superior)
+- npm (normalmente viene con Node.js)
+- Angular CLI (versión 18.0.5)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instrucciones de Instalación
 
-## Running unit tests
+1. Clona el repositorio:
+   ```
+   git clone [URL del repositorio]
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Navega al directorio del proyecto:
+   ```
+   cd [nombre-del-proyecto]
+   ```
 
-## Running end-to-end tests
+3. Instala las dependencias:
+   ```
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Cómo Ejecutar el Proyecto
 
-## Further help
+1. Para iniciar el servidor de desarrollo, ejecuta:
+   ```
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+2. Abre tu navegador y visita `http://localhost:4200/`
+
+3. Busca tu personaje favorito por nombre.
+
+
+## Contacto
+
+Creado por Ezequiel Gomez de Lima (https://github.com/ezequielgdl)
