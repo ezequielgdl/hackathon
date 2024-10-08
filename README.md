@@ -2,6 +2,7 @@
 
 ## Descripción
 Es una aplicación web que permite buscar y filtrar personajes de la serie Rick and Morty.
+Consume la API de Rick and Morty para obtener la información sobre los personajes.
 
 ## Pila Tecnológica
 Este proyecto utiliza las siguientes tecnologías:
