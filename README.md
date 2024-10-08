@@ -56,7 +56,7 @@ Busca tu personaje favorito por nombre en la aplicación.
 
 ## Demo
 
-[Demo](https://hackathon-theta-wheat.vercel.app/)
+Ver un demo de la aplicación [aquí](https://hackathon-theta-wheat.vercel.app/)
 
 ## Capturas de pantalla
 
