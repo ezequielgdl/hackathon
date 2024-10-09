@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { signal, computed } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../interfaces/characters';
@@ -55,7 +56,7 @@ import { HeaderComponent } from '../header/header.component';
   `,
   styles: ``
 })
-export class CharactersComponent implements OnInit {
+export class CharactersComponent implements OnInit, OnDestroy {
   private readonly itemsPerPage = 20;
 
   characters = signal<Character[]>([]);
@@ -70,11 +71,18 @@ export class CharactersComponent implements OnInit {
     return this.filteredCharacters().slice(startIndex, endIndex);
   });
 
+  private destroy$ = new Subject<void>();
+
   constructor(private charactersService: CharactersService) { }
 
   ngOnInit(): void {
     this.fetchCharacters();
     this.setupSearchListener();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private fetchCharacters(): void {
@@ -89,6 +97,7 @@ export class CharactersComponent implements OnInit {
 
   private setupSearchListener(): void {
     this.searchControl.valueChanges.pipe(
+      takeUntil(this.destroy$),
       debounceTime(300),
       distinctUntilChanged()
     ).subscribe(searchTerm => {
